@@ -11,6 +11,7 @@ class Problem(Document):
     test_cases = ListField(StringField())
     reward = IntField()
     difficulty = StringField()
+    completed = BooleanField(default=False)
 
 class Pet(Document):
     petID = StringField(required=True, unique=True)
@@ -19,13 +20,5 @@ class Pet(Document):
     age = IntField()
     lastFed = DateTimeField()
 
-class CompletedProblem(EmbeddedDocument):
-    problemID = ReferenceField(Problem)
-    rewarded = BooleanField()
-    question = StringField()
 
-class Archive(Document):
-    archiveID = StringField(required=True, unique=True)
-    userID = ReferenceField(User)
-    completed = ListField(EmbeddedDocumentField(CompletedProblem))
-    
+
