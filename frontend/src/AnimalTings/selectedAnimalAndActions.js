@@ -1,11 +1,13 @@
-class selectedAnimal extends Phaser.Scene { 
+class selectedAnimalAndActions extends Phaser.Scene { 
 
     constructor() {
-        super('selectedAnimal')
+        super('selectedAnimalAndActions')
     }
 
     create() {
-        
+
     }
 
 }
+
+export default selectedAnimalAndActions
