@@ -1,0 +1,15 @@
+{
+  "title": "Is Subsequence",
+  "tags": [
+    "String",
+    "Two Pointers",
+    "Dynamic Programming"
+  ],
+  "difficulty": "Easy",
+  "link": "https://leetcode.com/problems/is-subsequence/description/",
+  "problem": {
+    "given_code": "class Solution:\n    def isSubsequence(self, s: str, t: str) -> bool:\n        pass\n",
+    "test_code": "if __name__ == \"__main__\":\n    solution = Solution()\n\n    test_framework = TestFramework(solution.isSubsequence)\n\n    test_cases = [\n        ((\"abc\", \"ahbgdc\"), {}, True),\n        ((\"axc\", \"ahbgdc\"), {}, False),\n        ((\"\", \"ahbgdc\"), {}, True),\n        ((\"abc\", \"\"), {}, False),\n        ((\"bb\", \"ahbgdc\"), {}, False),\n        ((\"ace\", \"abcde\"), {}, True),\n    ]\n\n    report = test_framework.generate_report(\n        test_cases, \"isSubsequence_test_report.json\"\n    )\n    print(report)\n"
+  }
+}
+
