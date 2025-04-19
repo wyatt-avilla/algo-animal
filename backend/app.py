@@ -21,7 +21,7 @@ def flask_home():
 def flask_create_tamagotchi():
     data = flask_request.json
     flask_mongo.db.pets.insert_one(data)
-    return flask_jsonify({"message": "Tamagotchi created"}), 201
+    return flask_jsonify({"message": "Tamagot   chi created"}), 201
 
 @flask_app.route("/tamagotchi", methods=["GET"])
 def flask_list_tamagotchis():
