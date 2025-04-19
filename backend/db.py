@@ -1,3 +1,5 @@
+from dbclasses import User, Problem, Pet, Archive
+
 mongo_uri = "mongodb+srv://ryanokimoto2003:YkERBrxtMCaYiz0D@project 0.mongodb.net/tomagotchiDB?retryWrites=true&w=majority"
 client = MongoClient(mongo_uri)
 print(client.list_database_names())
