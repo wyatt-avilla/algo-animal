@@ -1,2 +1,3 @@
 .venv/
 frontend/dist/
+backend/__pycache__/
