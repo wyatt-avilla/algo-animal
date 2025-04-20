@@ -7,7 +7,7 @@ const Homepage = () => {
   
   // sends user to Zoo Page
   const handleClick = () => {
-    navigate('/zoo');
+    navigate('/Hub');
   };
   
   // Add an inline style element for the animation

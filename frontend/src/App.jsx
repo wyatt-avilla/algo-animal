@@ -1,44 +1,44 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Homepage from './Homepage';
-import ShopPage from './ShopPage';
-import Zoo from './Zoo'
+
+import Homepage from './Homepage'; // A1
+import LoginTings from './LoginTings'; // AA1
+import HubPage from './HubPage'; // B1
+import ShopPage from './ShopPage'; // C1
+import WorkspaceIDEgame from './WorkspaceIDEgame'; // D1
+import Zoo from './Zoo'; // E1
 
 function App() {
   const [msg, setMsg] = useState('');
-  
+
   useEffect(() => {
     fetch('/api/hello')
       .then(res => res.json())
       .then(data => setMsg(data.message));
   }, []);
-  
+
   return (
-    // <Router>
-    //   <div>
-    //     {/* Navigation */}
-    //     <nav style={{
-    //       display: 'flex',
-    //       justifyContent: 'center',
-    //       padding: '1rem',
-    //       background: '#333',
-    //       marginBottom: '1rem'
-    //     }}>
-    //       <Link to="/" style={{ margin: '0 1rem', color: '#fff', textDecoration: 'none' }}>Home</Link>
-    //       <Link to="/zoo" style={{ margin: '0 1rem', color: '#fff', textDecoration: 'none' }}>Zoo Layout</Link>
-    //     </nav>
-        
-    //     {/* Routes */}
-    //     <Routes>
-    //       <Route path="/" element={<HomePage />} />
-    //       <Route path="/zoo" element={<Zoo />} />
-    //     </Routes>
-    //   </div>
-    // </Router>
-    <div>
-      <Homepage />
-    </div>
+    <Router>
+      {/* Optional Nav Bar */}
+      <nav>
+        <Link to="/">Home</Link> |{" "}
+        <Link to="/login">Login</Link> |{" "}
+        <Link to="/hub">Hub</Link> |{" "}
+        <Link to="/shop">Shop</Link> |{" "}
+        <Link to="/ide">IDE</Link> |{" "}
+        <Link to="/zoo">Zoo</Link>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/login" element={<LoginTings />} />
+        <Route path="/hub" element={<HubPage />} />
+        <Route path="/shop" element={<ShopPage />} />
+        <Route path="/ide" element={<WorkspaceIDEgame />} />
+        <Route path="/zoo" element={<Zoo />} />
+      </Routes>
+    </Router>
   );
 }
 

@@ -1,9 +1,9 @@
 import os
 from pymongo import MongoClient
 from dotenv import load_dotenv
-from dbclasses import User
+from backend.dbclasses import User
 from pathlib import Path
-from loadenv import load_environment_variables
+from backend.loadenv import load_environment_variables
 
 env = load_environment_variables()
 
@@ -16,7 +16,7 @@ def get_user_by_auth0(auth0_id):
     if user:
         return User(
             points=user["points"],
-            auth0_id=user["auth0_id"]
+            auth0_id=user["auth0_id"],
             koala=user.get("koala"),
             cat=user.get("cat"),
             food=user.get("food"),
