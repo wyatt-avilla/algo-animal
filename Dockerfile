@@ -23,6 +23,9 @@ COPY backend/ backend/
 # Copy env
 COPY .env ./
 
+# Copy problem sets
+COPY problem_sets/ problem_sets/
+
 # Copy built frontend into static dir
 RUN mkdir static && cp -r frontend/dist/* static/
 
@@ -48,6 +51,7 @@ ENV PATH="/app/.venv/bin:$PATH"
 COPY --from=builder /app/backend backend/
 COPY --from=builder /app/static static/
 COPY --from=builder /app/.env ./
+COPY --from=builder /app/problem_sets ./problem_sets
 
 
 # Start FastAPI via Uvicorn

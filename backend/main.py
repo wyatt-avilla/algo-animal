@@ -7,6 +7,8 @@ from backend.routes.user import router as users_router
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from backend.loadenv import load_environment_variables
+from backend.question_grading import router as question_grading_router
+
 
 app = FastAPI()
 
@@ -28,6 +30,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+app.include_router(question_grading_router)
 
 
 @app.get("/api/hello")
