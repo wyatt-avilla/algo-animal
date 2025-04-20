@@ -13,3 +13,5 @@ backend/__pycache__/
 *.njsproj
 *.sln
 *.sw?
+
+node_modules/
