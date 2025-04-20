@@ -11,15 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Dump .env file (optional)
-        run: |
-          render services update-env ${{ secrets.RENDER_SERVICE_ID }} \
-          --env AUTH0_DOMAIN="${{ secrets.AUTH0_DOMAIN }}" \
-          --env API_IDENTIFIER="${{ secrets.API_IDENTIFIER }}" \
-          --env ALGORITHMS="${{ secrets.ALGORITHMS }}" \
-          --env MONGO_URI="${{ secrets.MONGO_URI }}" \
-          --env MONGO_DB="${{ secrets.MONGO_DB }}"
-
       # Downloads the Render CLI binary and adds it to the PATH.
       # To prevent breaking changes in CI/CD, we pin to a
       # specific CLI version (in this case 1.1.0).
@@ -28,6 +19,15 @@ jobs:
           curl -L https://github.com/render-oss/cli/releases/download/v1.1.0/cli_1.1.0_linux_amd64.zip -o render.zip
           unzip -o render.zip
           sudo mv cli_v1.1.0 /usr/local/bin/render
+      - name: Render Update Env
+        run: |
+          render services update-env ${{ secrets.RENDER_SERVICE_ID }} \
+          --env AUTH0_DOMAIN="${{ secrets.AUTH0_DOMAIN }}" \
+          --env API_IDENTIFIER="${{ secrets.API_IDENTIFIER }}" \
+          --env ALGORITHMS="${{ secrets.ALGORITHMS }}" \
+          --env MONGO_URI="${{ secrets.MONGO_URI }}" \
+          --env MONGO_DB="${{ secrets.MONGO_DB }}"
+
       - name: Trigger deploy with Render CLI
         env:
           # The CLI can authenticate via a Render API key without logging in.
