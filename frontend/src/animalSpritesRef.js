@@ -5,8 +5,8 @@ class animalSpriteRef extends Phaser.Scene {
 
     preload() {
         // Load the panda sprite sheets
-        this.load.spritesheet('pandaHappy', '/src/AnimalTings/AnimalAssets/PandaSprite/Happy.png', {frameWidth: 64, frameHeight: 64});
-        this.load.spritesheet('pandaCry', '/src/AnimalTings/AnimalAssets/PandaSprite/PandaCry.png', {frameWidth: 64, frameHeight: 64});
+        this.load.spritesheet('pandaHappy', '/assets/Happy.png', {frameWidth: 64, frameHeight: 64});
+        //this.load.spritesheet('pandaCry', '/src/AnimalTings/AnimalAssets/PandaSprite/PandaCry.png', {frameWidth: 64, frameHeight: 64});
         
         // Debug tool
         this.textures.on('addtexture', (key) => {
