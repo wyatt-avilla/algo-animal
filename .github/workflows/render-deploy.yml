@@ -1,4 +1,4 @@
-name: Fly Deploy
+name: Render Deploy
 
 on:
   push:
@@ -7,14 +7,13 @@ on:
 
 jobs:
   deploy:
-    name: Deploy app
+    name: Deploy to Render
     runs-on: ubuntu-latest
-    concurrency: deploy-group
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Dump .env file
+      - name: Dump .env file (optional)
         run: |
           echo "AUTH0_DOMAIN=${{ secrets.AUTH0_DOMAIN }}" >> .env
           echo "API_IDENTIFIER=${{ secrets.API_IDENTIFIER }}" >> .env
@@ -22,8 +21,10 @@ jobs:
           echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env
           echo "MONGO_DB=${{ secrets.MONGO_DB }}" >> .env
 
-      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: Install Render CLI
+        run: npm install -g render-cli
 
-      - run: flyctl deploy --remote-only
-        env:
-          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+      - name: Deploy using Render CLI
+        run:
+          render deploy --service-id ${{ secrets.RENDER_SERVICE_ID }} --api-key
+          ${{ secrets.RENDER_API_KEY }}
