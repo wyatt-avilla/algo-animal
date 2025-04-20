@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import HomePage from './Homepage';
+import Homepage from './Homepage';
 import ShopPage from './ShopPage';
 import Zoo from './Zoo'
 
@@ -37,7 +37,7 @@ function App() {
     //   </div>
     // </Router>
     <div>
-      <ShopPage />
+      <Homepage />
     </div>
   );
 }

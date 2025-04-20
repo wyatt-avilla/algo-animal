@@ -1,9 +1,9 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import a1BackgroundImage from '/assets/a1BackgroundImage.png'
 
 const Homepage = () => {
-  const navigate = useNavigate();
+//   const navigate = useNavigate();
   
   // sends user to Zoo Page
   const handleClick = () => {
@@ -41,14 +41,18 @@ const Homepage = () => {
         width: '100%',
         height: '100%',
         display: 'flex',
-        flexDirection: 'column',
+        // flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
       }}>
         <h1 style={{ 
-          color: 'white', 
-          textShadow: '2px 2px 4px rgba(0,0,0,0.7)',
-          marginBottom: '20px'
+            position: 'absolute',
+           color: 'white',
+            bottom: '80%',
+            fontSize: '48px',
+            border: 'none',
+            cursor: 'pointer',
+            textShadow: '0 2px 5px rgba(0,0,0,0.3)'
         }}>
           Algo Animal's
         </h1>
@@ -57,7 +61,7 @@ const Homepage = () => {
           onClick={handleClick}
           style={{
             position: 'absolute',
-            bottom: '10%',
+            bottom: '50%',
             padding: '10px 20px',
             fontSize: '16px',
             backgroundColor: 'red',
@@ -67,7 +71,7 @@ const Homepage = () => {
             boxShadow: '0 2px 5px rgba(0,0,0,0.3)'
           }}
         >
-          Go to Your Zoo
+          Login / Sign Up
         </button>
       </div>
     </div>
