@@ -9,7 +9,7 @@ from pymongo import MongoClient
 
 app = FastAPI()
 
-load_dotenv("backend/.env")
+load_dotenv(".env")
 MONGO_URI = os.getenv("MONGO_URI")
 MONGO_DB = os.getenv("MONGO_DB")
 print("Mongo URI:", MONGO_URI)

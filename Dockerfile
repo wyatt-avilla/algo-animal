@@ -20,6 +20,8 @@ RUN cd frontend && npm install && npm run build
 # Copy backend and other code
 COPY backend/ backend/
 
+# Copy env
+COPY .env ./
 
 # Copy built frontend into static dir
 RUN mkdir static && cp -r frontend/dist/* static/
@@ -45,6 +47,8 @@ ENV PATH="/app/.venv/bin:$PATH"
 # Copy app files from builder (includes backend/, static/, etc.)
 COPY --from=builder /app/backend backend/
 COPY --from=builder /app/static static/
+COPY --from=builder /app/.env ./
+
 
 # Start FastAPI via Uvicorn
 CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
