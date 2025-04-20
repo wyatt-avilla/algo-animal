@@ -89,4 +89,4 @@ async def onboard_user(user_info=Depends(get_current_user)):
     }
 
     users_collection.insert_one(new_user)
-    return new_user
+    return new_user["auth0_id"]
