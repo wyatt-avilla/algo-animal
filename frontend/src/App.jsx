@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-// importing WorkspaceIDEGame component with correct capitalization
-import WorkspaceIDEGame from './WorkspaceIDEgame.jsx';
-import Homepage from './Homepage.jsx';
-import HIW from './HIW.jsx';
-import Shop from './Shop.jsx';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import HomePage from './HomePage';
+import ShopPage from './ShopPage';
+import Zoo from './Zoo'
 
 function App() {
   const [msg, setMsg] = useState('');
@@ -16,42 +15,27 @@ function App() {
   }, []);
   
   return (
-    <div style={{
-      minHeight: '100vh',
-      overflowX: 'hidden'
-    }}>
-      <div style = {{
-        display: 'flex',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        alignItems: 'center',
-        height: '100vh'
-      }}>
-        <h1 style = {{
-          marginBottom: '2px'
-        }}>Algo Animal</h1>
-        <section style={{
+    <Router>
+      <div>
+        {/* Navigation */}
+        <nav style={{
           display: 'flex',
           justifyContent: 'center',
-          alignContent: 'center'
+          padding: '1rem',
+          background: '#333',
+          marginBottom: '1rem'
         }}>
-          <Homepage />
-        </section>
+          <Link to="/" style={{ margin: '0 1rem', color: '#fff', textDecoration: 'none' }}>Home</Link>
+          <Link to="/zoo" style={{ margin: '0 1rem', color: '#fff', textDecoration: 'none' }}>Zoo Layout</Link>
+        </nav>
+        
+        {/* Routes */}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/zoo" element={<Zoo />} />
+        </Routes>
       </div>
-    <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(4, 1fr)',
-        gridTemplateRows: 'repeat(4, 1fr)',
-        width: '80vw',
-        height: '100vh',
-        gap: '10px',
-        margin: '0 auto',
-        alignItems: 'center'
-      }}>
-        <HIW />
-        <Shop />
-      </div>
-    </div>
+    </Router>
   );
 }
 

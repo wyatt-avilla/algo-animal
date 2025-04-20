@@ -1,16 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Homepage = () => {
+const Zoo = () => {
     const navigate = useNavigate();
     
     const handleClick = () => {
-        navigate('/zoo');
+        navigate('/grid');
     };
     
     return (
         <div>
-            <h1>Algo Animal</h1>
+            <h1>Your Zoo</h1>
             <div style={{
                 width: '80vw',
                 height: '80vh',
@@ -22,7 +22,7 @@ const Homepage = () => {
                 flexDirection: 'column',
                 margin: '0 auto'
             }}>
-                <button
+                {/* <button
                     onClick={handleClick}
                     style={{
                         position: 'absolute',
@@ -31,11 +31,11 @@ const Homepage = () => {
                         fontSize: '16px'
                     }}
                 >
-                    Go to Your Zoo
-                </button>
+                    Go to Your Zoo!
+                </button> */}
             </div>
         </div>
     );
 };
 
-export default Homepage;
+export default Zoo;
