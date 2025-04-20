@@ -6,10 +6,13 @@ from fastapi import Request, HTTPException, Depends
 from fastapi.security import HTTPBearer
 import os
 import requests
+from loadenv import load_environment_variables
 
-AUTH0_DOMAIN = os.getenv("AUTH0_DOMAIN")
-API_IDENTIFIER = os.getenv("API_IDENTIFIER")
-ALGORITHMS = [os.getenv("ALGORITHMS", "RS256")]
+env = load_environment_variables()
+
+AUTH0_DOMAIN = env["AUTH0_DOMAIN"]
+API_IDENTIFIER = env["API_IDENTIFIER"]
+ALGORITHMS = [env["ALGORITHMS"]]
 
 # Caches JWKS
 jwks_url = f"https://{AUTH0_DOMAIN}/.well-known/jwks.json"
