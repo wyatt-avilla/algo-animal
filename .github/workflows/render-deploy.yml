@@ -13,11 +13,13 @@ jobs:
 
       - name: Dump .env file (optional)
         run: |
-          echo "AUTH0_DOMAIN=${{ secrets.AUTH0_DOMAIN }}" >> .env
-          echo "API_IDENTIFIER=${{ secrets.API_IDENTIFIER }}" >> .env
-          echo "ALGORITHMS=${{ secrets.ALGORITHMS }}" >> .env
-          echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env
-          echo "MONGO_DB=${{ secrets.MONGO_DB }}" >> .env
+          render services update-env ${{ secrets.RENDER_SERVICE_ID }} \
+          --env AUTH0_DOMAIN="${{ secrets.AUTH0_DOMAIN }}" \
+          --env API_IDENTIFIER="${{ secrets.API_IDENTIFIER }}" \
+          --env ALGORITHMS="${{ secrets.ALGORITHMS }}" \
+          --env MONGO_URI="${{ secrets.MONGO_URI }}" \
+          --env MONGO_DB="${{ secrets.MONGO_DB }}"
+
       # Downloads the Render CLI binary and adds it to the PATH.
       # To prevent breaking changes in CI/CD, we pin to a
       # specific CLI version (in this case 1.1.0).
