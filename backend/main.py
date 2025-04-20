@@ -3,13 +3,13 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 import os
-from routes.user import router as users_router
+from backend.routes.user import router as users_router
 from dotenv import load_dotenv
 from pymongo import MongoClient
 
 app = FastAPI()
 
-load_dotenv(".env")
+load_dotenv("backend/.env")
 MONGO_URI = os.getenv("MONGO_URI")
 MONGO_DB = os.getenv("MONGO_DB")
 print("Mongo URI:", MONGO_URI)
