@@ -5,17 +5,16 @@ from urllib.request import urlopen
 import json
 from datetime import datetime
 import os
+from backend.loadenv import load_environment_variables
 
-# MongoDB collection import
-# from db import users_collection
+env = load_environment_variables()
 
 router = APIRouter()
 
-AUTH0_DOMAIN = os.getenv("AUTH0_DOMAIN", "your-auth0-domain")
-API_IDENTIFIER = os.getenv("API_AUDIENCE", "your-api-identifier")
-ALGORITHMS = ["RS256"]
+AUTH0_DOMAIN = env["AUTH0_DOMAIN"]
+API_IDENTIFIER = env["API_IDENTIFIER"]
+ALGORITHMS = env["ALGORITHMS"]
 
-print("AUTH0_DOMAIN:", AUTH0_DOMAIN)
 
 def get_jwks():
     jwks_url = f"https://{AUTH0_DOMAIN}/.well-known/jwks.json"
@@ -81,8 +80,12 @@ async def onboard_user(user_info=Depends(get_current_user)):
         "auth0_id": auth0_id,
         "email": email,
         "points": 0,
-        "pet": "tamagotchi",
-        "created_at": datetime.utcnow(),
+        "koala": False,
+        "cat": False,
+        "food": 0,
+        "petStatus": 5,
+        "petBirth": datetime.utcnow(),
+        "lastFed": datetime.utcnow(),
     }
 
     users_collection.insert_one(new_user)

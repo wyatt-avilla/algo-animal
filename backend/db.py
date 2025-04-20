@@ -7,39 +7,45 @@ from loadenv import load_environment_variables
 
 env = load_environment_variables()
 
-client = env["MONGO_URI"]
-db = env["MONGO_DB"]
+client = MongoClient(env["MONGO_URI"])
+db = client[env["MONGO_DB"]]
 users_collection = db["users"]
 
+def get_user_by_auth0(auth0_id):
+    user = users_collection.find_one({"auth0_id": auth0_id})
+    if user:
+        return User(
+            points=user["points"],
+            auth0_id=user["auth0_id"]
+            koala=user.get("koala"),
+            cat=user.get("cat"),
+            food=user.get("food"),
+        )
+    return None
 
-def test_insert_user():
-    test_user = {
-        "username": "testuser123",
-        "password": "123",
-        "points": 50
+def upload_user(user):
+    user = {
+        "username": user.username,
+        "password": user.password,
+        "points": user.points,
+        "auth0_id": user.auth0_id
     }
+    if users_collection.find_one({"auth0_id": user["auth0_id"]}):
+        return False
+    else:
+        users_collection.insert_one(user)
+        return True
 
-    # Clean up before inserting to avoid duplicates
-    users_collection.delete_many({"username": test_user["username"]})
+def get_uncompleted_problem():
+    uncompleted = list(users_collection.find({"completed": False}))
+    if uncompleted:
+        return random.choice(uncompleted)
+    return None
 
-    # Insert the user
-    result = users_collection.insert_one(test_user)
-    assert result.inserted_id is not None
-
-    # Retrieve the user to confirm it was inserted
-    inserted_user = users_collection.find_one({"username": test_user["username"]})
-    assert inserted_user is not None
-    assert inserted_user["password"] == test_user["password"]
-    assert inserted_user["points"] == test_user["points"]
-
-    print("✅ Test passed: User successfully inserted and verified.")
-
-
-# if __name__ == "__main__":
-#     # Test the connection
-#     test_insert_user()
-#     try:
-#         client.admin.command('ping')
-#         print("MongoDB connection successful")
-#     except Exception as e:
-#         print(f"MongoDB connection failed: {e}")
+def feed_pet(pet_id):
+    pet = users_collection.find_one({"petID": pet_id})
+    if pet:
+        pet["lastFed"] = datetime.utcnow()
+        users_collection.update_one({"petID": pet_id}, {"$set": pet})
+        return True
+    return False
