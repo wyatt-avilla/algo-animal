@@ -1,5 +1,5 @@
 import React from 'react';
-import HIW from './HIW';
+import ShopPreview from './ShopPreview';
 import Shop from './Shop';
 
 const ShopPage = () => {
@@ -8,10 +8,6 @@ return (
         minHeight: '100vh',
         overflowX: 'hidden'
     }}>
-        <h1 style={{
-        textAlign: 'center',
-        marginBottom: '2rem'
-    }}>Grid Layout</h1>
         <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(4, 1fr)',
@@ -22,7 +18,7 @@ return (
             margin: '0 auto',
             alignItems: 'center'
         }}>
-            <HIW />
+            <ShopPreview />
             <Shop />
         </div>
     </div>

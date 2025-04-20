@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HIW = () => {
+const ShopPreview = () => {
     return(
         <div style={{
             gridColumn: '1 / span 3',
@@ -13,9 +13,9 @@ const HIW = () => {
             fontWeight: 'bold',
             height: '80vh'
         }}>
-            <h1 >head</h1>
+            <h1>*Insert Image of Sprite w/ Cosmetics*</h1>
         </div>
     );
 }
 
-export default HIW;
+export default ShopPreview;

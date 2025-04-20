@@ -15,27 +15,30 @@ function App() {
   }, []);
   
   return (
-    <Router>
-      <div>
-        {/* Navigation */}
-        <nav style={{
-          display: 'flex',
-          justifyContent: 'center',
-          padding: '1rem',
-          background: '#333',
-          marginBottom: '1rem'
-        }}>
-          <Link to="/" style={{ margin: '0 1rem', color: '#fff', textDecoration: 'none' }}>Home</Link>
-          <Link to="/zoo" style={{ margin: '0 1rem', color: '#fff', textDecoration: 'none' }}>Zoo Layout</Link>
-        </nav>
+    // <Router>
+    //   <div>
+    //     {/* Navigation */}
+    //     <nav style={{
+    //       display: 'flex',
+    //       justifyContent: 'center',
+    //       padding: '1rem',
+    //       background: '#333',
+    //       marginBottom: '1rem'
+    //     }}>
+    //       <Link to="/" style={{ margin: '0 1rem', color: '#fff', textDecoration: 'none' }}>Home</Link>
+    //       <Link to="/zoo" style={{ margin: '0 1rem', color: '#fff', textDecoration: 'none' }}>Zoo Layout</Link>
+    //     </nav>
         
-        {/* Routes */}
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/zoo" element={<Zoo />} />
-        </Routes>
-      </div>
-    </Router>
+    //     {/* Routes */}
+    //     <Routes>
+    //       <Route path="/" element={<HomePage />} />
+    //       <Route path="/zoo" element={<Zoo />} />
+    //     </Routes>
+    //   </div>
+    // </Router>
+    <div>
+      <ShopPage />
+    </div>
   );
 }
 
