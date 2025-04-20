@@ -7,18 +7,18 @@ class animalSpriteRef extends Phaser.Scene {
     preload() {
 
         // Load the panda sprite sheets 
-        this.load.spritesheet('pandaHappy', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
-        this.load.spritesheet('pandaCry', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
-        this.load.spritesheet('pandaEating', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
-        this.load.spritesheet('pandaIdle', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
-        this.load.spritesheet('pandaIdleBlinking', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
-        this.load.spritesheet('pandaResting', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
-        this.load.spritesheet('pandaSitting', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
-        this.load.spritesheet('pandaSleep', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
-        this.load.spritesheet('pandaSoFull', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
-        this.load.spritesheet('pandaTalkingSitting', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
-        this.load.spritesheet('pandaThinking', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
-        this.load.spritesheet('pandaWave', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
+        this.load.spritesheet('pandaHappy', 'frontend/src/AnimalTings/AnimalAssets/Happy.png', {frameWidth: 64, frameHeight: 64})
+        this.load.spritesheet('pandaCry', 'frontend/src/AnimalTings/AnimalAssets/PandaCry.png', {frameWidth: 64, frameHeight: 64})
+        //this.load.spritesheet('pandaEating', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
+        //this.load.spritesheet('pandaIdle', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
+        //this.load.spritesheet('pandaIdleBlinking', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
+        //this.load.spritesheet('pandaResting', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
+        //this.load.spritesheet('pandaSitting', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
+        //this.load.spritesheet('pandaSleep', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
+        //this.load.spritesheet('pandaSoFull', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
+        //this.load.spritesheet('pandaTalkingSitting', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
+        //this.load.spritesheet('pandaThinking', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
+        //this.load.spritesheet('pandaWave', 'frontend/src/AnimalTings/AnimalAssets/animal.png', {frameWidth: 64, frameHeight: 64})
 
         // Load other sprite sheets later
 
@@ -30,8 +30,19 @@ class animalSpriteRef extends Phaser.Scene {
     }
 
     create() {
-        this.add.sprite(100, 100, 'pandaHappy').setOrigin(0.5, 0.5).setScale(2);
+        //this.add.sprite(100, 100, 'pandaHappy').setOrigin(0.5, 0.5).setScale(2);
+
+        this.anims.create({
+            key: 'pandaHappy',
+            frames: this.anims.generateFrameNumbers('pandaHappy', { start: 0, end: 3 }),
+            frameRate: 10,
+            repeat: -1
+        })
+
+
+        this.player.play('pandaHappy').setOrigin(0.5, 0.5).setScale(2);
     }
+
 
 }
 
