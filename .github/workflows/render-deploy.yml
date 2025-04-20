@@ -1,30 +1,26 @@
-name: Render Deploy
-
+name: Render CLI Deploy
+run-name: Deploying via Render CLI
+# Run this workflow when code is pushed to the main branch.
 on:
   push:
     branches:
       - main
-
 jobs:
-  deploy:
-    name: Deploy to Render
+  Deploy-Render:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Dump .env file (optional)
-        run: |
-          echo "AUTH0_DOMAIN=${{ secrets.AUTH0_DOMAIN }}" >> .env
-          echo "API_IDENTIFIER=${{ secrets.API_IDENTIFIER }}" >> .env
-          echo "ALGORITHMS=${{ secrets.ALGORITHMS }}" >> .env
-          echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env
-          echo "MONGO_DB=${{ secrets.MONGO_DB }}" >> .env
-
+      # Downloads the Render CLI binary and adds it to the PATH.
+      # To prevent breaking changes in CI/CD, we pin to a
+      # specific CLI version (in this case 1.1.0).
       - name: Install Render CLI
-        run: npm install -g render-cli
-
-      - name: Deploy using Render CLI
-        run:
-          render deploy --service-id ${{ secrets.RENDER_SERVICE_ID }} --api-key
-          ${{ secrets.RENDER_API_KEY }}
+        run: |
+          curl -L https://github.com/render-oss/cli/releases/download/v1.1.0/cli_1.1.0_linux_amd64.zip -o render.zip
+          unzip render.zip
+          sudo mv cli_v1.1.0 /usr/local/bin/render
+      - name: Trigger deploy with Render CLI
+        env:
+          # The CLI can authenticate via a Render API key without logging in.
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+          CI: true
+        run: |
+          render deploys create ${{ secrets.RENDER_SERVICE_ID }} --output json --confirm
