@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import Phaser from 'phaser'
-import animalSpriteRef from './AnimalTings/animalSpritesRef'
-// import selectedAnimalAndActions from './AnimalTings/selectedAnimalAndActions'
+import animalSpriteRef from './animalSpritesRef'
+//import selectedAnimalAndActions from './AnimalTings/selectedAnimalAndActions'
 
 const WorkspaceIDEGame = () => {
   const gameRef = useRef(null)
@@ -57,6 +57,22 @@ const WorkspaceIDEGame = () => {
       />
     </div>
   )
+
 }
+
+// This part is responsible for displaying leet code problems
+// and the user's code editor.
+// It uses the useEffect hook to fetch the problems from the server
+// and the useState hook to manage the problems state.
+// It also uses the useRef hook to create a reference to the code editor.
+// The code editor is created using the CodeMirror library.
+// It also uses the useState hook to manage the editor instance state.
+// It also uses the useEffect hook to fetch the problems from the server
+// and the useState hook to manage the problems state.
+// It also uses the useRef hook to create a reference to the code editor.
+
+
+
+
 
 export default WorkspaceIDEGame
