@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import Phaser from 'phaser';
 import animalSpriteRef from './animalSpritesRef';
@@ -17,7 +16,6 @@ import { oneDark } from '@codemirror/theme-one-dark';
 // - Code editor (bottom)
 
 const WorkspaceIDEGame = () => {
-
   const gameRef = useRef(null);
   const editorRef = useRef(null);
   const [editorView, setEditorView] = useState(null);
@@ -32,7 +30,6 @@ const WorkspaceIDEGame = () => {
       width: 480,
       height: 320,
       parent: gameRef.current,
-
       scene: [animalSpriteRef]
     };
     
