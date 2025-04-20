@@ -1,26 +1,3 @@
-# from fastapi import APIRouter
-# from pydantic import BaseModel
-# from db import db
-# from bson import ObjectId
-
-# router = APIRouter()
-
-# # Pydantic model for request body
-# class CreateUserRequest(BaseModel):
-#     username: str
-#     email: str
-
-# @router.post("/user/create")
-# def create_user(user: CreateUserRequest):
-#     user_data = {
-#         "username": user.username,
-#         "pass": user.email,
-#         "points": 0,
-#         "pet_alive": True
-#     }
-#     result = db.users.insert_one(user_data)
-#     return {"id": str(result.inserted_id), "user": user_data}
-
 from fastapi import APIRouter, Depends, Request, HTTPException
 from pymongo.collection import Collection
 from jose import jwt
@@ -38,6 +15,7 @@ AUTH0_DOMAIN = os.getenv("AUTH0_DOMAIN", "your-auth0-domain")
 API_IDENTIFIER = os.getenv("API_AUDIENCE", "your-api-identifier")
 ALGORITHMS = ["RS256"]
 
+print("AUTH0_DOMAIN:", AUTH0_DOMAIN)
 
 def get_jwks():
     jwks_url = f"https://{AUTH0_DOMAIN}/.well-known/jwks.json"

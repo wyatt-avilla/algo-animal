@@ -1,37 +1,50 @@
-//  This file is responsible for creating a 
-//  Phaser game instance and rendering it in a React component.
-//  It uses the useRef and useEffect hooks to manage the game instance lifecycle.
-//  The game is configured with a width and height, and the parent element is set to the ref created by useRef.
-// This file also imports the animalSpriteRef and selectedAnimalAndActions classes, which are Phaser scenes
-// to userGamePlay.jsx
-
-
-import React, {useEffect, useRef} from 'react'
+import React, { useEffect, useRef } from 'react'
 import Phaser from 'phaser'
 import animalSpriteRef from './AnimalTings/animalSpritesRef'
-//import selectedAnimalAndActions from './AnimalTings/selectedAnimalAndActions'
+// import selectedAnimalAndActions from './AnimalTings/selectedAnimalAndActions'
 
 const WorkspaceIDEGame = () => {
   const gameRef = useRef(null)
-  
+
   useEffect(() => {
     const config = {
       type: Phaser.AUTO,
       width: 480,
       height: 320,
       parent: gameRef.current,
-      scene: [animalSpriteRef]
+      scene: [animalSpriteRef],
     }
-    
+
     const game = new Phaser.Game(config)
-    
+
     return () => {
       game.destroy(true)
     }
   }, [])
-  
+
+  const handleAuth = () => {
+    console.log('🔐 Login or Signup button clicked')
+    // Add redirect or login logic here (e.g., Auth0 loginWithRedirect())
+  }
+
   return (
-    <div>
+    <div style={{ textAlign: 'center', marginTop: '20px' }}>
+      <button
+        onClick={handleAuth}
+        style={{
+          marginBottom: '20px',
+          padding: '10px 20px',
+          fontWeight: 'bold',
+          backgroundColor: '#333',
+          color: '#fff',
+          border: 'none',
+          borderRadius: '8px',
+          cursor: 'pointer'
+        }}
+      >
+        🔐 Login / Signup
+      </button>
+
       <h2>Phaser Game Area</h2>
       <div
         ref={gameRef}
@@ -39,14 +52,11 @@ const WorkspaceIDEGame = () => {
           width: '480px',
           height: '320px',
           border: '2px solid #333',
+          margin: '0 auto',
         }}
       />
     </div>
   )
-
-  
 }
-
-
 
 export default WorkspaceIDEGame

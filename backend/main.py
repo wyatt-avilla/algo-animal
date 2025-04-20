@@ -6,14 +6,14 @@ import os
 from backend.routes.user import router as users_router
 from dotenv import load_dotenv
 from pymongo import MongoClient
+from backend.loadenv import load_environment_variables
 
 app = FastAPI()
 
-load_dotenv(".env")
-MONGO_URI = os.getenv("MONGO_URI")
-MONGO_DB = os.getenv("MONGO_DB")
-print("Mongo URI:", MONGO_URI)
-print("Mongo DB:", MONGO_DB)
+env = load_environment_variables()
+
+MONGO_URI = env["MONGO_URI"]
+MONGO_DB = env["MONGO_DB"]
 
 client = MongoClient(MONGO_URI)
 db = client[MONGO_DB]

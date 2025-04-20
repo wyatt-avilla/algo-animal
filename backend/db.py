@@ -3,16 +3,13 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 from dbclasses import User
 from pathlib import Path
+from loadenv import load_environment_variables
 
+env = load_environment_variables()
 
-# MONGO_URI = os.getenv("MONGO_URI")
-# MONGO_DB = os.getenv("MONGO_DB")
-# print("Mongo URI:", MONGO_URI)
-# print("Mongo DB:", MONGO_DB)
-
-# client = MongoClient(MONGO_URI)
-# db = client[MONGO_DB]
-# users_collection = db["users"]
+client = env["MONGO_URI"]
+db = env["MONGO_DB"]
+users_collection = db["users"]
 
 
 def test_insert_user():
