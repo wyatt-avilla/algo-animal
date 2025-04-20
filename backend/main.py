@@ -21,6 +21,7 @@ def hello():
 
 
 # Serve built React files
+app.mount("/assets", StaticFiles(directory="static/assets"), name="assets")
 app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
 
