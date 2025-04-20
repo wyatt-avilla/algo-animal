@@ -9,7 +9,7 @@
 import React, {useEffect, useRef} from 'react'
 import Phaser from 'phaser'
 import animalSpriteRef from './AnimalTings/animalSpritesRef'
-import selectedAnimalAndActions from './AnimalTings/selectedAnimalAndActions'
+//import selectedAnimalAndActions from './AnimalTings/selectedAnimalAndActions'
 
 const WorkspaceIDEGame = () => {
   const gameRef = useRef(null)
@@ -20,7 +20,7 @@ const WorkspaceIDEGame = () => {
       width: 480,
       height: 320,
       parent: gameRef.current,
-      scene: [animalSpriteRef, selectedAnimalAndActions]
+      scene: [animalSpriteRef]
     }
     
     const game = new Phaser.Game(config)
