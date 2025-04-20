@@ -3,8 +3,23 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 import os
+from routes.user import router as users_router
+from dotenv import load_dotenv
+from pymongo import MongoClient
 
 app = FastAPI()
+
+load_dotenv(".env")
+MONGO_URI = os.getenv("MONGO_URI")
+MONGO_DB = os.getenv("MONGO_DB")
+print("Mongo URI:", MONGO_URI)
+print("Mongo DB:", MONGO_DB)
+
+client = MongoClient(MONGO_URI)
+db = client[MONGO_DB]
+users_collection = db["users"]
+
+app.include_router(users_router)
 
 # Enable CORS for local dev or client access
 app.add_middleware(

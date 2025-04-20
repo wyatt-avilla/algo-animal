@@ -20,6 +20,7 @@ RUN cd frontend && npm install && npm run build
 # Copy backend and other code
 COPY backend/ backend/
 
+
 # Copy built frontend into static dir
 RUN mkdir static && cp -r frontend/dist/* static/
 
