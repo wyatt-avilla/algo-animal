@@ -20,9 +20,6 @@ RUN cd frontend && npm install && npm run build
 # Copy backend and other code
 COPY backend/ backend/
 
-# Copy env
-COPY .env ./
-
 # Copy problem sets
 COPY problem_sets/ problem_sets/
 
