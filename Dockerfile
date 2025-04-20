@@ -47,7 +47,6 @@ ENV PATH="/app/.venv/bin:$PATH"
 # Copy app files from builder (includes backend/, static/, etc.)
 COPY --from=builder /app/backend backend/
 COPY --from=builder /app/static static/
-COPY --from=builder /app/.env ./
 COPY --from=builder /app/problem_sets ./problem_sets
 
 
